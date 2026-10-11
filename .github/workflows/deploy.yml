@@ -1,5 +1,5 @@
 # Builds the website at every push on main and publishes it on the gh-pages branch, which GitHub
-# Pages serves at https://moatezslim.github.io/learnspace/
+# Pages serves at https://moatezslim.github.io/learnspaceold/
 name: Deploy to GitHub Pages
 
 on:

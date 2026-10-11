@@ -2,7 +2,9 @@
 
 Plateforme d’apprentissage en ligne (prototype fonctionnel) construite à partir des écrans de référence LearnSpace, avec Léa, une assistante animée réalisée à partir de sa planche de personnage.
 
-**En ligne : https://moatezslim.github.io/learnspace/**
+**En ligne : https://moatezslim.github.io/learnspaceold/**
+
+Ce dépôt conserve l’ancienne version de LearnSpace, celle d’avant le nouveau design. La version actuelle est sur https://github.com/MoatezSlim/learnspace (site : https://moatezslim.github.io/learnspace/). Les deux sites gardent chacun leur propre progression dans le navigateur.
 
 Le site est republié à chaque envoi sur `main` : le workflow `.github/workflows/deploy.yml` installe, vérifie le TypeScript, compile, puis place `dist-site/` sur la branche `gh-pages`, que GitHub Pages sert. Sur ce site, la progression est enregistrée dans le navigateur et Léa répond avec ses réponses préparées ; les réponses en direct et la synchronisation entre appareils demandent un hébergement qui fournit ces services (voir « Réponses » et « Persistance » ci-dessous).
 

@@ -4,7 +4,9 @@
 // Both are optional: the app keeps working in memory when neither is available.
 import type { LearnerState } from '../types';
 
-const KEY = 'learnspace:v1';
+// Own key: this old version is served on the same origin as the new one (moatezslim.github.io),
+// so the two keep separate progress in the browser.
+const KEY = 'learnspaceold:v1';
 
 export const local = {
   load(): LearnerState | null {

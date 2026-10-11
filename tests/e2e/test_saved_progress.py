@@ -14,7 +14,7 @@ async def with_local(b, state):
     pg = await ctx.new_page(); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)))
     await pg.goto(URL, wait_until='networkidle')
-    await pg.evaluate("s => localStorage.setItem('learnspace:v1', s)", state)
+    await pg.evaluate("s => localStorage.setItem('learnspaceold:v1', s)", state)
     await pg.reload(wait_until='networkidle'); await pg.wait_for_timeout(900)
     return ctx, pg, errs
 
@@ -28,7 +28,7 @@ async def main():
         check('A: two "+1 aujourd’hui"', t.count('+1 aujourd’hui') == 2, str(t.count('+1 aujourd’hui')))
         check('A: streak 5 jours', '5 jours' in t)
         check('A: 24 / 35 and +2 cette semaine', '24 / 35' in t and '+2 cette semaine' in t)
-        st = json.loads(await pg.evaluate("localStorage.getItem('learnspace:v1')"))
+        st = json.loads(await pg.evaluate("localStorage.getItem('learnspaceold:v1')"))
         old = json.loads(stale)
         check('A: answer and lesson in progress kept', st['answerLog'] == old['answerLog'] and st['attempts'] == old['attempts'])
         check('A: version upgraded, goal 10', st['version'] == 2 and st['profile']['dailyGoalMin'] == 10)
@@ -52,7 +52,7 @@ async def main():
         pg = await ctx.new_page(); errs = []
         pg.on('pageerror', lambda e: errs.append(str(e)))
         await pg.goto(URL, wait_until='networkidle'); await pg.wait_for_timeout(1200)
-        st = json.loads(await pg.evaluate("localStorage.getItem('learnspace:v1')") or 'null')
+        st = json.loads(await pg.evaluate("localStorage.getItem('learnspaceold:v1')") or 'null')
         check('C: cloud progress adopted on a new device', bool(st) and st['answerLog'] == json.loads(stale)['answerLog'], str(st and len(st['answerLog'])))
         t = await pg.inner_text('.d2')
         check('C: reference day shown', '/ 10 min' in t and t.count('+1 aujourd’hui') == 2 and '5 jours' in t)
